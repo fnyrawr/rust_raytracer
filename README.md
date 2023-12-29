@@ -7,7 +7,7 @@
 | Name           | Github  |
 |----------------|---------|
 | **Florian K.** | fnyrawr |
-| **Max F.**     | ???     |
+| **Max F.**     | FalkMaximilian    |
 
 ## ToDo
 - [ ] implement basic libraries (image generation, etc.)
