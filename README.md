@@ -16,9 +16,9 @@
   - [x] save image to PNG `base_image_generation`
   - [x] set image width and height (flexible options) `base_image_generation`
   - [ ] supersampling (stratified sampling) `(will follow later)`
-> ##### <span style="color: yellow">current implementation process</span>
->- [ ] implement base functionalities for 2D image generation
->  - [ ] gradient color image
+> ##### current implementation process
+>- [x] implement base functionalities for 2D image generation
+>  - [x] gradient color image
 >  - [ ] disc in center
 >  - [ ] polka dots with gradient
 - [ ] implement base functionalities for 3D image generation
