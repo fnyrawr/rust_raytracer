@@ -11,11 +11,13 @@
 
 ## ToDo
 - [x] implement base image generation functionalities
-  - [x] Array structure for data: [Px1.R Px1.G Px1.B Px2.R...] `base_image_generation`
-  - [x] create constant color image (later refactor to basic Sampler trait) `base_image_generation`
-  - [x] save image to PNG `base_image_generation`
-  - [x] set image width and height (flexible options) `base_image_generation`
-  - [ ] supersampling (stratified sampling) `(will follow later)`
+  - [x] Array structure for data: [Px1.R Px1.G Px1.B Px2.R...]
+  - [x] create constant color image (later refactor to basic Sampler trait)
+  - [x] save image to PNG
+  - [x] set image width and height (flexible options)
+  - [ ] implement gamma correction `next up @Florian`
+  - [ ] supersampling (stratified sampling) `next up @Florian`
+  - [ ] implement recursion depth `next up @Florian`
 - [x] implement base functionalities for 2D image generation
   - [x] gradient color image
   - [x] disc in center
