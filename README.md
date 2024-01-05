@@ -18,14 +18,18 @@
   - [x] implement gamma correction
   - [x] refactor sampling trait (sample image methods) to image class
   - [x] supersampling (stratified sampling)
-  - [ ] implement custom random number generator `next up @Florian`
-  - [ ] implement recursion depth `next up @Florian`
 - [x] implement base functionalities for 2D image generation
   - [x] gradient color image
   - [x] disc in center
   - [x] polka dots with gradient
 - [ ] implement base functionalities for 3D image generation
-- [ ] implement different materials
-- [ ] texture support
-- [ ] implement bounding boxes checks of objects preventing unnecessary calculations
-- [ ] implement multithreading support
+  - [ ] basic ray casting
+  - [ ] movable camera obscura
+  - [x] implement recursion depth
+  - [ ] implement different shapes
+  - [ ] implement different materials
+  - [ ] texture support
+  - [ ] implement bounding boxes checks of objects preventing unnecessary calculations
+- [ ] Implement optimizations
+  - [x] implement faster random number generator
+  - [ ] implement multithreading support
