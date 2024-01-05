@@ -1,4 +1,4 @@
-/// Representation of a simple RGB Color
+/// Representation of a simple RGB Color in scale 0..1
 #[derive(Debug, Clone, Copy)]
 pub struct Color {
     pub r: f64,
@@ -8,9 +8,17 @@ pub struct Color {
 
 #[allow(dead_code)]
 impl Color {
+    /// Create a new color instance
+    /// #### Arguments
+    /// * `r`, `g`, `b`: Red, Green, Blue in range 0..1
     pub fn new(r: f64, g: f64, b: f64) -> Color {
         Color { r, g, b }
     }
+
+    /// Create a new color instance
+    /// #### Arguments
+    /// * `r`, `g`, `b`: Red, Green, Blue in range 0..255
+    pub fn new_from_u8(r: u8, g: u8, b: u8) -> Color { Color { r: r as f64/255f64, g: g as f64/255f64, b: b as f64/255f64 } }
 
     /// Add two colors returning a new color instance
     /// #### Arguments
