@@ -11,11 +11,13 @@
 
 ## ToDo
 - [x] implement base image generation functionalities
-  - [x] Array structure for data: [Px1.R Px1.G Px1.B Px2.R...]
+  - [x] vector structure for data: [Px1.R Px1.G Px1.B Px2.R...]
   - [x] create constant color image (later refactor to basic Sampler trait)
   - [x] save image to PNG
   - [x] set image width and height (flexible options)
   - [x] implement gamma correction
+  - [x] refactor vector to image class
+  - [ ] refactor sampling trait (sample image methods) to image class `next up @Florian`
   - [ ] supersampling (stratified sampling) `next up @Florian`
   - [ ] implement recursion depth `next up @Florian`
 - [x] implement base functionalities for 2D image generation
