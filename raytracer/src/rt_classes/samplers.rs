@@ -1,11 +1,12 @@
 use crate::rt_classes::color::Color;
 
 /// Generic Sampler trait
-pub trait Sampler {
+pub trait Sampler: Sync + Send {
     /// Return a Color depending on x and y position
     /// #### Arguments
     /// * `x`, `y`: position on x and y axis
     fn get_color(&self, x: f64, y: f64) -> Color;
+    fn get_recursion_depth() -> u8;
 }
 
 pub struct GradientColor {
@@ -26,8 +27,13 @@ impl Sampler for GradientColor {
         let w = (x + y) / (self.width + self.height) as f64;
         Color::add(&self.start_color, &Color::multiply(w, &Color::subtract(&self.end_color, &self.start_color)))
     }
+
+    fn get_recursion_depth() -> u8 {
+        return 0
+    }
 }
 
+#[derive(Clone)]
 pub struct Disc {
     center_x: f64,
     center_y: f64,
@@ -50,8 +56,13 @@ impl Sampler for Disc {
         // return black
         Color::new(0.0, 0.0, 0.0)
     }
+
+    fn get_recursion_depth() -> u8 {
+        return 0
+    }
 }
 
+#[derive(Clone)]
 pub struct PolkaDots {
     width: usize,
     height: usize,
@@ -92,5 +103,9 @@ impl Sampler for PolkaDots {
         }
         // return black
         Color::new(0.0, 0.0, 0.0)
+    }
+
+    fn get_recursion_depth() -> u8 {
+        return 0
     }
 }

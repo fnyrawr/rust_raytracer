@@ -1,14 +1,15 @@
 use crate::rt_classes::color::Color;
 use crate::rt_classes::samplers::Sampler;
-use rand::SeedableRng;
-use rand::rngs::SmallRng;
-use rand::Rng;
+use rand::{Rng, SeedableRng};
+use rand_xorshift::XorShiftRng;
+use std::time:: Instant;
 
 pub struct Image {
     data: Vec<u8>,
     width: usize,
     height: usize,
     gamma: f64,
+    rng: XorShiftRng,
 }
 
 #[allow(dead_code)]
@@ -17,7 +18,7 @@ impl Image {
         let size = 3*width*height;
         let mut vec: Vec<u8> = Vec::<u8>::with_capacity(size);
         for _i in 0..size { vec.push(0); }
-        Image { data: vec, width, height, gamma }
+        Image { data: vec, width, height, gamma, rng: XorShiftRng::from_entropy() }
     }
 
     fn set_pixel(&mut self, x: usize, y: usize, color: Color) {
@@ -37,16 +38,28 @@ impl Image {
     }
 
     pub fn sample(&mut self, sampler: &dyn Sampler, n: u8) {
-        let mut rng = SmallRng::from_entropy();
+        println!("Creating image | Dimensions {} x {} | {}x Antialiasing", self.width, self.height, n);
+        let start = Instant::now();
+
+        // precompute random numbers reducing overhead
+        let mut random_values_x = Vec::with_capacity(n as usize);
+        let mut random_values_y = Vec::with_capacity(n as usize);
+        for _ in 0..n {
+            random_values_x.push(self.rng.gen_range(0.0..1.0));
+            random_values_y.push(self.rng.gen_range(0.0..1.0));
+        }
+
+        let mut i = 0;
+        let k = self.height * self.width;
         for y in 0..self.height {
             for x in 0..self.width {
                 let color = if n > 0 {
                     // Antialiasing with n subpixels
                     let mut color = Color::new(0.0, 0.0, 0.0);
-                    for _ in 0..n {
-                        for _ in 0..n {
-                            let xs = x as f64 + rng.gen_range(0.0..1.0);
-                            let ys = y as f64 + rng.gen_range(0.0..1.0);
+                    for i in 0..n {
+                        for j in 0..n {
+                            let xs = x as f64 + random_values_x[i as usize];
+                            let ys = y as f64 + random_values_y[j as usize];
                             color = Color::add(&color, &sampler.get_color(xs, ys));
                         }
                     }
@@ -57,8 +70,16 @@ impl Image {
                     sampler.get_color(x as f64, y as f64)
                 };
                 self.set_pixel(x, y, color);
+                i += 1;
+                if i % 1000 == 0 {
+                    let p: f32 = (i * 100) as f32 / k as f32;
+                    print!("\rSampling ...   | {:.2}% done | {:3} seconds elapsed", p, start.elapsed().as_secs());
+                }
+
             }
         }
+        let duration = start.elapsed();
+        println!("\rImage creation finished in {:?} seconds                              ", duration);
     }
 
     pub fn save_as_png(&self, path_str: &str) {

@@ -8,3 +8,5 @@ edition = "2021"
 [dependencies]
 png = "0.17.10"
 rand = { version = "0.8.5", features = ["small_rng"] }
+futures = { version = "0.3.30", features = ["thread-pool"] }
+rand_xorshift = "0.3.0"
