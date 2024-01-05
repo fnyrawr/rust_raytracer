@@ -15,7 +15,7 @@
   - [x] create constant color image (later refactor to basic Sampler trait)
   - [x] save image to PNG
   - [x] set image width and height (flexible options)
-  - [ ] implement gamma correction `next up @Florian`
+  - [x] implement gamma correction
   - [ ] supersampling (stratified sampling) `next up @Florian`
   - [ ] implement recursion depth `next up @Florian`
 - [x] implement base functionalities for 2D image generation
