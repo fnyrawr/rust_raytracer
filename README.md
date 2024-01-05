@@ -16,9 +16,9 @@
   - [x] save image to PNG
   - [x] set image width and height (flexible options)
   - [x] implement gamma correction
-  - [x] refactor vector to image class
-  - [ ] refactor sampling trait (sample image methods) to image class `next up @Florian`
-  - [ ] supersampling (stratified sampling) `next up @Florian`
+  - [x] refactor sampling trait (sample image methods) to image class
+  - [x] supersampling (stratified sampling)
+  - [ ] implement custom random number generator `next up @Florian`
   - [ ] implement recursion depth `next up @Florian`
 - [x] implement base functionalities for 2D image generation
   - [x] gradient color image
