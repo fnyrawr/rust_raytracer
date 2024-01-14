@@ -23,8 +23,8 @@
   - [x] disc in center
   - [x] polka dots with gradient
 - [ ] implement base functionalities for 3D image generation
-  - [ ] basic ray casting
-  - [ ] movable camera obscura
+  - [x] basic ray casting
+  - [x] movable camera obscura
   - [x] implement recursion depth
   - [ ] implement different shapes
   - [ ] implement different materials
