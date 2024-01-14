@@ -2,6 +2,7 @@ use crate::rt_classes::color::Color;
 use crate::rt_classes::image::Image;
 use crate::rt_classes::samplers::ColoredDiscs;
 pub mod rt_classes;
+mod rt_objects;
 
 fn main() {
     // image dimensions

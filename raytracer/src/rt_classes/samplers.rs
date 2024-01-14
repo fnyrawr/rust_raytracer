@@ -11,6 +11,26 @@ pub trait Sampler: Sync + Send {
     fn get_recursion_depth(&self) -> u8;
 }
 
+pub struct ConstantColor {
+    color: Color,
+}
+
+impl ConstantColor {
+    pub(crate) fn new(color: Color) -> Color {
+        Color { r: color.r, g: color.g, b: color.b }
+    }
+}
+
+impl Sampler for ConstantColor {
+    fn get_color(&self, x: f64, y: f64) -> Color {
+        self.color
+    }
+
+    fn get_recursion_depth(&self) -> u8 {
+        return 0
+    }
+}
+
 pub struct GradientColor {
     width: usize,
     height: usize,
