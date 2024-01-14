@@ -16,13 +16,13 @@ pub struct ConstantColor {
 }
 
 impl ConstantColor {
-    pub(crate) fn new(color: Color) -> Color {
-        Color { r: color.r, g: color.g, b: color.b }
+    pub(crate) fn new(color: Color) -> ConstantColor {
+        ConstantColor { color }
     }
 }
 
 impl Sampler for ConstantColor {
-    fn get_color(&self, x: f64, y: f64) -> Color {
+    fn get_color(&self, _x: f64, _y: f64) -> Color {
         self.color
     }
 

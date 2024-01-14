@@ -4,13 +4,13 @@ use crate::rt_classes::ray::Ray;
 use crate::rt_classes::samplers::{ConstantColor, Sampler};
 
 pub trait Material {
-    fn get_emmission(&self, hit: Hit) -> Color;
-    fn get_albedo(&self, hit: Hit) -> Color;
-    fn get_secondary_ray(&self, ray: Ray, hit: Hit) -> Ray;
+    fn get_emmission(&self, hit: Hit) -> Option<Color>;
+    fn get_albedo(&self, hit: Hit) -> Option<Color>;
+    fn get_secondary_ray(&self, ray: Ray, hit: Hit) -> Option<Ray>;
 }
 
 pub struct EmmittingMaterial {
-    emmission: dyn Sampler,
+    emmission: ConstantColor,
 }
 
 impl EmmittingMaterial {
@@ -20,17 +20,17 @@ impl EmmittingMaterial {
 }
 
 impl Material for EmmittingMaterial {
-    fn get_emmission(&self, hit: Hit) -> Color {
+    fn get_emmission(&self, hit: Hit) -> Option<Color> {
         // color of sky in ray direction, constant for now
-        self.emmission.get_color(hit.u, hit.v)
+        Option::from(self.emmission.get_color(hit.u, hit.v))
     }
 
-    fn get_albedo(&self, hit: Hit) -> Color {
+    fn get_albedo(&self, _hit: Hit) -> Option<Color> {
         // no diffusion, no albedo
         None
     }
 
-    fn get_secondary_ray(&self, ray: Ray, hit: Hit) -> Ray {
+    fn get_secondary_ray(&self, _ray: Ray, _hit: Hit) -> Option<Ray> {
         // no secondary ray as there is no diffusion going on
         None
     }

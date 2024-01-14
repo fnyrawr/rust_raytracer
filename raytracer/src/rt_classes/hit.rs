@@ -1,5 +1,5 @@
 use crate::rt_classes::materials::Material;
-use crate::rt_classes::matrix::{Direction, Point};
+use crate::rt_classes::vector::{Direction, Point};
 
 pub struct Hit {
     pub t: f64,
